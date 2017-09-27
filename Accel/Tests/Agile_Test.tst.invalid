@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+
+<TestCase name="Agile_Test" version="5">
+
+<meta>
+   <create version="7.1" buildNumber="7.1.0.611" author="admin" date="09/24/2014" host="GH-6K1JRY1" />
+   <lastEdited version="7.1" buildNumber="7.1.0.611" author="admin" date="09/25/2014" host="GH-6K1JRY1" />
+</meta>
+
+<id>F8F3D8D843FB11E4B7B1F01FAF3E427F</id>
+<Documentation>Put documentation of the Test Case here.</Documentation>
+<IsInProject>true</IsInProject>
+<sig>ZWQ9MiZ0Y3Y9NSZsaXNhdj03LjEgKDcuMS4wLjYxMSkmbm9kZXM9LTIwMTA1MDM3OTI=</sig>
+<subprocess>false</subprocess>
+
+<initState>
+</initState>
+
+<resultState>
+</resultState>
+
+<deletedProps>
+</deletedProps>
+
+    <Node name="Agile" log=""
+          type="com.itko.lisa.ws.rest.RESTNode" 
+          version="3" 
+          uid="FCD7A33643FB11E4B7B1F01FAF3E427F" 
+          think="500-1S" 
+          useFilters="true" 
+          quiet="false" 
+          next="end" > 
+
+
+      <!-- Assertions -->
+<CheckResult assertTrue="false" name="Response Code!=200?" type="com.itko.lisa.test.CheckResultPropRegEx">
+<log>Assertion name: Response Code!=200? checks for: false  is of type: Property Value Expression.</log>
+<then>fail</then>
+<valueToAssertKey></valueToAssertKey>
+        <prop>lisa.OT_Txn.http.responseCode</prop>
+        <param>200</param>
+</CheckResult>
+
+<CheckResult assertTrue="false" name="x_respreason_code present?" type="com.itko.lisa.test.CheckResultContains">
+<log>Assertion name: x_respreason_code present? checks for: false  is of type: Result as String Contains Given String.</log>
+<then>fail</then>
+<valueToAssertKey></valueToAssertKey>
+        <param>x_respreason_code=00</param>
+</CheckResult>
+
+<CheckResult assertTrue="false" name="x_response_code present?" type="com.itko.lisa.test.CheckResultContains">
+<log>Assertion name: x_response_code present? checks for: false  is of type: Result as String Contains Given String.</log>
+<then>fail</then>
+<valueToAssertKey></valueToAssertKey>
+        <param>x_response_code=1</param>
+</CheckResult>
+
+<CheckResult assertTrue="true" name="x_error_message present?" type="com.itko.lisa.test.CheckResultContains">
+<log></log>
+<then>fail</then>
+        <param></param>
+</CheckResult>
+
+<url>https://outboundproxy.mclocal.int:15520/AccelaLoanProcess/PostDepositFunds.php?x_accela_login_id=tt5682bv2s&amp;x_accela_login_key=Pvx7829b!v9&amp;x_card_number=1310000209010100&amp;x_expiration_date=1214&amp;x_email_address=john_doe%40yahoo.com&amp;x_phone_number=8888888888&amp;x_loan_reference_id=22248879&amp;x_amount=0.99&amp;x_account_type=Checking&amp;x_balance_required=1</url>
+<content-type>application/x-www-form-urlencoded</content-type>
+<data-type>text</data-type>
+<httpMethod>POST</httpMethod>
+<onError>abort</onError>
+    </Node>
+
+
+    <Node name="abort" log=""
+          type="com.itko.lisa.test.AbortStep" 
+          version="1" 
+          uid="F8F3D8DA43FB11E4B7B1F01FAF3E427F" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="" > 
+
+    </Node>
+
+
+    <Node name="fail" log=""
+          type="com.itko.lisa.test.Abend" 
+          version="1" 
+          uid="F8F3D8DC43FB11E4B7B1F01FAF3E427F" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="abort" > 
+
+    </Node>
+
+
+    <Node name="end" log=""
+          type="com.itko.lisa.test.NormalEnd" 
+          version="1" 
+          uid="F8F3D8DE43FB11E4B7B1F01FAF3E427F" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="fail" > 
+
+    </Node>
+
+
+</TestCase>

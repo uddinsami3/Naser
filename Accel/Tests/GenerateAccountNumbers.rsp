@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+
+<!-- TestCase Results Document created by LISA Test Editor -->
+<!-- On: Fri Sep 26 08:14:38 CDT 2014 -->
+
+
+<Results name="GenerateAccountNumbers">
+
+
+    <Result node="Accel">
+      <content type="xstream" charset="UTF-8"><![CDATA[<int>1</int>]]></content>
+    </Result>
+
+
+</Results>

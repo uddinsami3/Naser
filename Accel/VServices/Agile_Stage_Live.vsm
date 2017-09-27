@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+
+<VSModel name="Agile_Stage_Live" version="5">
+
+<meta>
+   <create version="7.1" buildNumber="7.1.0.611" author="admin" date="05/08/2014" host="GH-6K1JRY1" />
+   <lastEdited version="7.1" buildNumber="7.1.0.611" author="admin" date="09/25/2014" host="GH-6K1JRY1" />
+</meta>
+
+<id>32593D7AD6C411E38CF1F01FAF3E427F</id>
+<Documentation>Put documentation of the VS Model here.</Documentation>
+<IsInProject>true</IsInProject>
+<sig>ZWQ9MiZ0Y3Y9NSZsaXNhdj03LjEgKDcuMS4wLjYxMSkmbm9kZXM9LTE2NTE5NDExOTU=</sig>
+<subprocess>false</subprocess>
+
+<initState>
+</initState>
+
+<resultState>
+</resultState>
+
+<deletedProps>
+</deletedProps>
+
+    <Node name="Virtual HTTPS Listener" log=""
+          type="com.itko.lisa.vse.stateful.protocol.http.HttpListenStep" 
+          version="1" 
+          uid="7288524CD6C311E38CF1F01FAF3E427F" 
+          think="0" 
+          useFilters="true" 
+          quiet="false" 
+          next="Virtual Service Execution Router" > 
+
+<outputAsObject>false</outputAsObject>
+<onExceptionStep>abort</onExceptionStep>
+<listenPort>12704</listenPort>
+<bindAddress></bindAddress>
+<basePath>/demo/AccelaLoanProcess</basePath>
+<bindOnly>false</bindOnly>
+<useSSL>true</useSSL>
+<sslKeystoreFile>{{LISA_PROJ_ROOT}}/Security/45232-stage-lisa-mastercard-int-cjb4stl3.jks</sslKeystoreFile>
+<sslKeystorePWEnc>8b923091e33484e01de2c25a3a7a770b</sslKeystorePWEnc>
+    </Node>
+
+
+    <Node name="Virtual Service Execution Router" log=""
+          type="com.itko.lisa.vse.stateful.VSRouterStep" 
+          version="1" 
+          uid="null" 
+          think="0" 
+          useFilters="true" 
+          quiet="true" 
+          next="Virtual HTTPS Live Invocation" > 
+
+<onerror>abort</onerror>
+<script>// This script must return either an enum entry from ExecutionMode or&#13;&#10;// a string that is the name of an enum entry.  The DYNAMIC entry may&#13;&#10;// not be returned.  It will be executed for DYNAMIC execution mode&#13;&#10;// only.&#13;&#10;import com.itko.lisa.vse.ExecutionMode;&#13;&#10;&#13;&#10;return ExecutionMode.EFFICIENT;&#13;&#10;</script>
+<liveInvocationStep>Virtual HTTPS Live Invocation</liveInvocationStep>
+    </Node>
+
+
+    <Node name="Virtual HTTPS Live Invocation" log=""
+          type="com.itko.lisa.vse.stateful.protocol.http.HttpLiveInvocationStep" 
+          version="1" 
+          uid="null" 
+          think="0" 
+          useFilters="true" 
+          quiet="true" 
+          next="Virtual HTTPS Responder" > 
+
+<outputAsObject>true</outputAsObject>
+<onExceptionStep>abort</onExceptionStep>
+<requestPropertyName>lisa.vse.request</requestPropertyName>
+<targetServer>outboundproxy.mclocal.int</targetServer>
+<targetPort>15520</targetPort>
+<useSSLToServer>true</useSSLToServer>
+<useSSL>true</useSSL>
+    </Node>
+
+
+    <Node name="Virtual HTTPS Responder" log=""
+          type="com.itko.lisa.vse.stateful.protocol.http.HttpRespondStep" 
+          version="1" 
+          uid="null" 
+          think="0" 
+          useFilters="true" 
+          quiet="false" 
+          next="Virtual HTTPS Listener" > 
+
+<responseList>lisa.vse.live.response</responseList>
+<onExceptionStep>abort</onExceptionStep>
+    </Node>
+
+
+    <Node name="end" log=""
+          type="com.itko.lisa.test.NormalEnd" 
+          version="1" 
+          uid="32593D80D6C411E38CF1F01FAF3E427F" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="fail" > 
+
+    </Node>
+
+
+    <Node name="fail" log=""
+          type="com.itko.lisa.test.Abend" 
+          version="1" 
+          uid="32593D7ED6C411E38CF1F01FAF3E427F" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="abort" > 
+
+    </Node>
+
+
+    <Node name="abort" log=""
+          type="com.itko.lisa.test.AbortStep" 
+          version="1" 
+          uid="32593D7CD6C411E38CF1F01FAF3E427F" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="" > 
+
+    </Node>
+
+
+</VSModel>
