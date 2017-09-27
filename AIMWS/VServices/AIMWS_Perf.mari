@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<MarInfo>
+<name>AIMWS_Perf</name>
+<type>VIRTUAL_SERVICE</type>
+<projectRoot>AIMWS</projectRoot>
+<optimized>true</optimized>
+<deployInfo>
+    <PrimaryAsset>VServices/AIMWS_Perf.vsm</PrimaryAsset>
+    <Configuration>Configs/Perf.config</Configuration>
+    <ConcurrentCapacity>1</ConcurrentCapacity>
+    <ThinkTimePercent>100</ThinkTimePercent>
+    <AutoRestart>true</AutoRestart>
+    <StartOnDeploy>true</StartOnDeploy>
+    <GroupTag>aimws</GroupTag>
+</deployInfo>
+</MarInfo>

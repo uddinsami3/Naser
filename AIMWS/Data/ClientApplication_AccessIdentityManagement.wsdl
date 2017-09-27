@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="ClientApplication_AccessIdentityManagement" targetNamespace="http://aim.mastercard.com/phase1/service/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://aim.mastercard.com/phase1/service/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:exception="http://aim.mastercard.com/exception/phase1/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:api="http://aim.mastercard.com/messages/phase1/">
+
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://aim.mastercard.com/messages/phase1/"
+                        schemaLocation="ClientApplication_AccessIdentityManagement_messages.xsd"/>
+            <xsd:import namespace="http://aim.mastercard.com/exception/phase1/"
+                        schemaLocation="Phase_1_AccessIdentityManagement_exception.xsd"/>
+        </xsd:schema>
+    </types>
+
+    <message name="aimErrorResponse">
+        <part element="exception:aimErrorList" name="fault"/>
+    </message>
+
+    <message name="registerClientApplicationRequest">
+        <part element="api:registerClientApplicationRequest" name="registerClientApplicationRequest"/>
+    </message>
+    <message name="registerClientApplicationResponse">
+        <part element="api:registerClientApplicationResponse" name="registerClientApplicationResponse"/>
+    </message>
+
+    <message name="getClientApplicationServicesRequest">
+        <part element="api:getClientApplicationServicesRequest" name="getClientApplicationServicesRequest"/>
+    </message>
+    <message name="getClientApplicationServicesResponse">
+        <part element="api:getClientApplicationServicesResponse" name="getClientApplicationServicesResponse"/>
+    </message>
+
+    <message name="grantServiceAccessRequest">
+        <part element="api:grantServiceAccessRequest" name="grantServiceAccessRequest"/>
+    </message>
+    <message name="grantServiceAccessResponse">
+        <part element="api:grantServiceAccessResponse" name="grantServiceAccessResponse"/>
+    </message>
+
+    <message name="addCertificateToClientApplicationRequest">
+        <part element="api:addCertificateToClientApplicationRequest" name="addCertificateToClientApplicationResponse"/>
+    </message>
+    <message name="addCertificateToClientApplicationResponse">
+        <part element="api:addCertificateToClientApplicationResponse" name="addCertificateToClientApplicationResponse"/>
+    </message>
+
+    <message name="removeCertificateFromClientApplicationRequest">
+        <part element="api:removeCertificateFromClientApplicationRequest" name="removeCertificateFromClientApplicationResponse"/>
+    </message>
+    <message name="removeCertificateFromClientApplicationResponse">
+        <part element="api:removeCertificateFromClientApplicationResponse" name="removeCertificateFromClientApplicationResponse"/>
+    </message>
+
+    <message name="removeClientApplicationRequest">
+        <part element="api:removeClientApplicationRequest" name="removeClientApplicationRequest"/>
+    </message>
+    <message name="removeClientApplicationResponse">
+        <part element="api:removeClientApplicationResponse" name="removeClientApplicationResponse"/>
+    </message>
+
+    <message name="getInternalUserRequest">
+        <part element="api:getInternalUsersRequest" name="getInternalUsersRequest"/>
+    </message>
+    <message name="getInternalUsersResponse">
+        <part element="api:getInternalUsersResponse" name="getInternalUsersResponse"/>
+    </message>
+
+    <message name="setClientApplicationStatusRequest">
+        <part element="api:setClientApplicationStatusRequest" name="setClientApplicationStatusRequest"/>
+    </message>
+    <message name="setClientApplicationStatusResponse">
+        <part element="api:setClientApplicationStatusResponse" name="setClientApplicationStatusResponse"/>
+    </message>
+    
+    <message name="createServiceRequest">
+        <part element="api:createServiceRequest" name="createServiceRequest"/>
+    </message>
+    <message name="createServiceResponse">
+        <part element="api:createServiceResponse" name="createServiceResponse"/>
+    </message>
+
+    <message name="deleteServiceRequest">
+        <part element="api:deleteServiceRequest" name="deleteServiceRequest"/>
+    </message>
+    <message name="deleteServiceResponse">
+        <part element="api:deleteServiceResponse" name="deleteServiceResponse"/>
+    </message>
+
+    <message name="getServiceInfoRequest">
+        <part element="api:getServiceInfoRequest" name="getServiceInfoRequest"/>
+    </message>
+    <message name="getServiceInfoResponse">
+        <part element="api:getServiceInfoResponse" name="getServiceInfoResponse"/>
+    </message>
+    
+    <message name="revokeServiceRequest">
+        <part element="api:revokeServiceAccessRequest" name="revokeServiceAccessRequest"/>
+    </message>
+    <message name="revokeServiceResponse">
+        <part element="api:revokeServiceAccessResponse" name="revokeServiceAccessResponse"/>
+    </message>
+
+    <message name="updateServiceInformationRequest">
+        <part element="api:updateServiceInformationRequest" name="updateServiceInformationRequest"/>
+    </message>
+    <message name="updateServiceInformationResponse">
+        <part element="api:updateServiceInformationResponse" name="updateServiceInformationResponse"/>
+    </message>
+
+    <message name="getClientApplicationRequest">
+        <part element="api:getClientApplicationRequest" name="getClientApplicationRequest"/>
+    </message>
+    <message name="getClientApplicationResponse">
+        <part element="api:getClientApplicationResponse" name="getClientApplicationResponse"/>
+    </message>
+	
+	<message name="addCertificateToDeveloperRequest">
+        <part element="api:addCertificateToDeveloperRequest" name="addCertificateToDeveloperRequest"/>
+    </message>
+    <message name="addCertificateToDeveloperResponse">
+        <part element="api:addCertificateToDeveloperResponse" name="addCertificateToDeveloperResponse"/>
+    </message>
+
+	<message name="removeCertificateFromDeveloperRequest">
+        <part element="api:removeCertificateFromDeveloperRequest" name="removeCertificateFromDeveloperRequest"/>
+    </message>
+    <message name="removeCertificateFromDeveloperResponse">
+        <part element="api:removeCertificateFromDeveloperResponse" name="removeCertificateFromDeveloperResponse"/>
+    </message>
+
+    <message name="findDeveloperCertificateRequest">
+        <part element="api:findDeveloperCertificateRequest" name="findDeveloperCertificateRequest"/>
+    </message>
+    <message name="findDeveloperCertificateResponse">
+        <part element="api:findDeveloperCertificateResponse" name="findDeveloperCertificateResponse"/>
+    </message>
+
+    <portType name="ClientApplication_AccessIdentityManagement">
+        <operation name="registerClientApplication">
+            <documentation>
+                Associates the developer ID, based on identity propagation, with the application ID within a specific platform (environment).
+            </documentation>
+            <input message="tns:registerClientApplicationRequest"/>
+            <output message="tns:registerClientApplicationResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="getClientApplicationServices">
+            <documentation>
+                Retrieves the services associated with a client application
+            </documentation>
+            <input message="tns:getClientApplicationServicesRequest"/>
+            <output message="tns:getClientApplicationServicesResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="grantServiceAccess">
+            <documentation>
+                Associates a service to a client application
+            </documentation>
+            <input message="tns:grantServiceAccessRequest"/>
+            <output message="tns:grantServiceAccessResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+        
+        <operation name="addCertificateToClientApplication">
+            <documentation>
+                Adds a certificate to a client application
+            </documentation>
+            <input message="tns:addCertificateToClientApplicationRequest"/>
+            <output message="tns:addCertificateToClientApplicationResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="removeCertificateFromClientApplication">
+            <documentation>
+                Removes a certificate from a client application
+            </documentation>
+            <input message="tns:removeCertificateFromClientApplicationRequest"/>
+            <output message="tns:removeCertificateFromClientApplicationResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="removeClientApplication">
+            <documentation>
+                Removes a client application for the repository
+            </documentation>
+            <input message="tns:removeClientApplicationRequest"/>
+            <output message="tns:removeClientApplicationResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="getInternalUsers">
+            <documentation>
+                Gets a list of users based on a single search criteria.
+                The list may be empty.
+            </documentation>
+            <input message="tns:getInternalUserRequest"/>
+            <output message="tns:getInternalUsersResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="setClientApplicationStatus">
+            <documentation>
+                Sets the application status to be active or inactive
+            </documentation>
+            <input message="tns:setClientApplicationStatusRequest"/>
+            <output message="tns:setClientApplicationStatusResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="createService">
+            <documentation>
+                Creates a service with a Service Type for a specific Platform
+            </documentation>
+            <input message="tns:createServiceRequest"/>
+            <output message="tns:createServiceResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="deleteService">
+            <documentation>
+                Deletes a service with a Service Type for a specific Platform
+            </documentation>
+            <input message="tns:deleteServiceRequest"/>
+            <output message="tns:deleteServiceResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="getServiceInfo">
+            <documentation>
+                Obtains information about a service.
+            </documentation>
+            <input message="tns:getServiceInfoRequest"/>
+            <output message="tns:getServiceInfoResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="revokeServiceAccess">
+            <documentation>
+                Removes access to a service
+            </documentation>
+            <input message="tns:revokeServiceRequest"/>
+            <output message="tns:revokeServiceResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="updateServiceInformation">
+            <documentation>
+                Changes the name of the service
+            </documentation>
+            <input message="tns:updateServiceInformationRequest"/>
+            <output message="tns:updateServiceInformationResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+
+        <operation name="getClientApplication">
+            <documentation>
+                Retrieves a client application record
+            </documentation>
+            <input message="tns:getClientApplicationRequest"/>
+            <output message="tns:getClientApplicationResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+        
+        <operation name="addCertificateToDeveloper">
+            <documentation>
+                Stores Certificate for the Developer
+            </documentation>
+            <input message="tns:addCertificateToDeveloperRequest"/>
+            <output message="tns:addCertificateToDeveloperResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+        
+        <operation name="removeCertificateFromDeveloper">
+            <documentation>
+                Removes Certificate from the Developer
+            </documentation>
+            <input message="tns:removeCertificateFromDeveloperRequest"/>
+            <output message="tns:removeCertificateFromDeveloperResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+        
+        <operation name="findDeveloperCertificate">
+            <documentation>
+                Removes Certificate from the Developer
+            </documentation>
+            <input message="tns:findDeveloperCertificateRequest"/>
+            <output message="tns:findDeveloperCertificateResponse"/>
+            <fault name="aimErrorResponse" message="tns:aimErrorResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="ClientApplication_AccessIdentityManagementPortBinding" type="tns:ClientApplication_AccessIdentityManagement">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <operation name="registerClientApplication">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="getClientApplicationServices">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="grantServiceAccess">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="addCertificateToClientApplication">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="removeCertificateFromClientApplication">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="removeClientApplication">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="getInternalUsers">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="setClientApplicationStatus">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="createService">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="deleteService">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="getServiceInfo">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="revokeServiceAccess">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="updateServiceInformation">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+
+        <operation name="getClientApplication">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+        
+        <operation name="addCertificateToDeveloper">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+        
+        <operation name="removeCertificateFromDeveloper">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+                
+        <operation name="findDeveloperCertificate">
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+            <fault name="aimErrorResponse">
+                <soap:fault name="aimErrorResponse" use="literal"/>
+            </fault>
+        </operation>
+    </binding>
+
+    <service name="ClientApplication_AccessIdentityManagementService">
+        <port binding="tns:ClientApplication_AccessIdentityManagementPortBinding"
+              name="ClientApplication_AccessIdentityManagementPort">
+            <soap:address location="http://localhost:9081/v1.0.0_aimws_phase1/ClientApplication_AccessIdentityManagementService"/>
+        </port>
+    </service>
+</definitions>

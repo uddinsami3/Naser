@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://aim.mastercard.com/exception/phase1/" version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:exception="http://aim.mastercard.com/exception/phase1/">
+
+    <xs:element name="aimErrorList" type="exception:aimErrorList"/>
+
+    <xs:complexType name="aimErrorList">
+        <xs:sequence>
+            <xs:element minOccurs="0" nillable="true" name="message" type="xs:string"/>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="aimErrorList" nillable="true"
+                        type="exception:aimError"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="aimError">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="item" type="xs:string" nillable="true" minOccurs="0"/>
+            <xs:element name="type" type="xs:string" nillable="true" minOccurs="0"/>
+            <xs:element name="recoverable" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

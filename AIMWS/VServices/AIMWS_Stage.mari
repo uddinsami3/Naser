@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<MarInfo>
+<name>AIMWS_Stage</name>
+<type>VIRTUAL_SERVICE</type>
+<projectRoot>AIMWS</projectRoot>
+<optimized>true</optimized>
+<deployInfo>
+    <PrimaryAsset>VServices/AIMWS_Stage.vsm</PrimaryAsset>
+    <Configuration>Configs/Stage.config</Configuration>
+    <ConcurrentCapacity>1</ConcurrentCapacity>
+    <ThinkTimePercent>100</ThinkTimePercent>
+    <AutoRestart>true</AutoRestart>
+    <StartOnDeploy>true</StartOnDeploy>
+</deployInfo>
+</MarInfo>

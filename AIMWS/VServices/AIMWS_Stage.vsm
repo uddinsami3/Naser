@@ -1,0 +1,212 @@
+<?xml version="1.0" ?>
+
+<VSModel name="AIMWS_Stage" version="5">
+
+<meta>
+   <create version="7.1" buildNumber="7.1.0.611" author="admin" date="08/03/2015" host="stl3ctxxa21" />
+   <lastEdited version="8.1.0" buildNumber="8.1.0.843" author="e047494" date="02/11/2016" host="GH-99KQN32" />
+</meta>
+
+<id>B8DF38F739A211E589010050568C4880</id>
+<IsInProject>true</IsInProject>
+<sig>ZWQ9NSZ0Y3Y9NSZsaXNhdj04LjEuMCAoOC4xLjAuODQzKSZub2Rlcz0xNTc1Mzg2MTgx</sig>
+<subprocess>false</subprocess>
+
+<initState>
+</initState>
+
+<resultState>
+</resultState>
+
+<deletedProps>
+</deletedProps>
+
+    <Node name="HTTP/S Listen" log=""
+          type="com.itko.lisa.vse.stateful.protocol.http.HttpListenStep" 
+          version="1" 
+          uid="null" 
+          think="0" 
+          useFilters="true" 
+          quiet="true" 
+          next="VS Image Response Selection" > 
+
+
+      <!-- Filters -->
+      <Filter type="com.itko.lisa.vse.stateful.common.DataProtocolFilter">
+        <valueToFilterKey>lisa.HTTP/S Listen.rsp</valueToFilterKey>
+<dataProtocol>com.itko.lisa.vse.stateful.common.datahandler.XMLPayloadParserDataProtocolHandler</dataProtocol>
+<processRequests>true</processRequests>
+<processResponses>false</processResponses>
+<CustomFilterData>
+<source set="request_body"/><actions>
+<action set="operation">
+<query>local-name(//*[local-name()=&apos;Body&apos;]/*[1])</query>
+<map>
+</map>
+</action>
+<action set="argument" name="selfRegisterRequest_userAlias">
+<query>//*[local-name()=&apos;selfRegisterRequest&apos;]/*[local-name()=&apos;userAlias&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="getSecurityQuestionsRequest_userId">
+<query>//*[local-name()=&apos;getSecurityQuestionsRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="getUserRolesRequest_userId">
+<query>//*[local-name()=&apos;getUserRolesRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="createUserRequest_userAlias">
+<query>//*[local-name()=&apos;createUserRequest&apos;]/*[local-name()=&apos;userAlias&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="suspendUserRequest_userId">
+<query>//*[local-name()=&apos;suspendUserRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="restoreUserRequest_userId">
+<query>//*[local-name()=&apos;restoreUserRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="authenticatePasswordRequest_userId">
+<query>//*[local-name()=&apos;authenticatePasswordRequest&apos;]/*[local-name()=&apos;userCredentials&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="addUserToRoleRequest_userId">
+<query>//*[local-name()=&apos;addUserToRoleRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="modifyUserRequest_userId">
+<query>//*[local-name()=&apos;modifyUserRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="searchUserRequest_userAlias">
+<query>//*[local-name()=&apos;searchUserRequest&apos;]/*[local-name()=&apos;userAlias&apos;]/text()</query>
+<map>
+</map>
+</action>
+<action set="argument" name="deleteUserRequest_userId">
+<query>//*[local-name()=&apos;deleteUserRequest&apos;]/*[local-name()=&apos;userId&apos;]/text()</query>
+<map>
+</map>
+</action>
+</actions>
+</CustomFilterData>
+      </Filter>
+
+
+      <!-- Data Sets -->
+<readrec>UserID</readrec>
+
+      <!-- Assertions -->
+<CheckResult assertTrue="true" name="If being efficient" type="com.itko.lisa.vse.stateful.AssertOnExecutionMode">
+<log>Current execution mode is Most Efficient, branching to VS Image Response Selection</log>
+<then>VS Image Response Selection</then>
+<valueToAssertKey></valueToAssertKey>
+        <executionMode>EFFICIENT</executionMode>
+</CheckResult>
+
+<outputAsObject>true</outputAsObject>
+<onExceptionStep>abort</onExceptionStep>
+<listenPort>{{PORT}}</listenPort>
+<bindAddress></bindAddress>
+<basePath>{{BASEPATH}}</basePath>
+<bindOnly>false</bindOnly>
+<useSSL>true</useSSL>
+<sslKeystoreFile>{{LISA_PROJ_ROOT}}/Security/45232-stage-lisa-mastercard-int-cjb4stl3.jks</sslKeystoreFile>
+<sslKeystorePWEnc>8b923091e33484e01de2c25a3a7a770b</sslKeystorePWEnc>
+    </Node>
+
+
+    <Node name="VS Image Response Selection" log=""
+          type="com.itko.lisa.vse.stateful.ConversationalStep" 
+          version="1" 
+          uid="null" 
+          think="0" 
+          useFilters="true" 
+          quiet="true" 
+          next="HTTP/S Respond" > 
+
+
+      <!-- Assertions -->
+<CheckResult assertTrue="true" name="If tracking" type="com.itko.lisa.vse.stateful.AssertOnExecutionMode">
+<log>Current execution mode is Transaction Tracking, branching to Virtual Service Tracking</log>
+<then>HTTP/S Respond</then>
+<valueToAssertKey></valueToAssertKey>
+        <executionMode>TRACK</executionMode>
+</CheckResult>
+
+<vsiSource>{{LISA_RELATIVE_PROJ_ROOT}}/VServices/Images/AIMWS.vsi</vsiSource>
+<requestPropertyName>lisa.vse.request</requestPropertyName>
+<outputAsObject>true</outputAsObject>
+<onExceptionStep>abort</onExceptionStep>
+    </Node>
+
+
+    <Node name="HTTP/S Respond" log=""
+          type="com.itko.lisa.vse.stateful.protocol.http.HttpRespondStep" 
+          version="1" 
+          uid="null" 
+          think="0" 
+          useFilters="true" 
+          quiet="false" 
+          next="HTTP/S Listen" > 
+
+<responseList>lisa.vse.response</responseList>
+<onExceptionStep>abort</onExceptionStep>
+    </Node>
+
+
+    <Node name="abort" log="The test was aborted"
+          type="com.itko.lisa.test.AbortStep" 
+          version="1" 
+          uid="B8DF38FD39A211E589010050568C4880" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="fail" > 
+
+    </Node>
+
+
+    <Node name="fail" log=""
+          type="com.itko.lisa.test.Abend" 
+          version="1" 
+          uid="B8DF38FB39A211E589010050568C4880" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="fail" > 
+
+    </Node>
+
+
+    <Node name="end" log=""
+          type="com.itko.lisa.test.NormalEnd" 
+          version="1" 
+          uid="B8DF38F939A211E589010050568C4880" 
+          think="0h" 
+          useFilters="true" 
+          quiet="true" 
+          next="fail" > 
+
+    </Node>
+
+
+    <DataSet type="com.itko.lisa.test.DataSetRandIDGenerator" name="UserID" atend="" local="false" random="false" maxItemsToFetch="0" >
+<sample>rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAB3CAAAAAEAAAABdAAGVXNlcklEdAAkNzIxNTI0NjUyOTM1NTA2MDE4MDY3NDI2NjU2MDYzNDM0ODIyeA==</sample>
+<type>Number</type>
+<length>36</length>
+<prefix></prefix>
+    </DataSet>
+
+</VSModel>

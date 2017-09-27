@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://aim.mastercard.com/domain/phase1/"
+           xmlns:domain="http://aim.mastercard.com/domain/phase1/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           version="1.0">
+
+    <xs:complexType name="securityQuestion">
+        <xs:sequence>
+            <xs:element nillable="true" name="question" type="xs:string"/>
+            <xs:element nillable="true" name="answer" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="userRole">
+        <xs:sequence>
+            <xs:element name="applicationId" minOccurs="0" type="xs:string"/>
+            <xs:element name="roleName" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:group name="esbClientNameGroup">
+    	<xs:sequence>
+    		<xs:element name="name" type="xs:string">
+    			<xs:annotation>
+    				<xs:documentation>
+    					The name of the ESB client user. by convention, names
+    					will start with the prefix "esb_client_".
+    				</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    	</xs:sequence>
+    </xs:group>
+    
+    <xs:complexType name="esbClientUser">
+     	<xs:sequence>
+    		<xs:group ref="domain:esbClientNameGroup" />
+    		<xs:group ref="domain:esbClientAttribsGroup" />
+    	</xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="esbClientAttribs">
+    	<xs:sequence>
+    		<xs:group ref="domain:esbClientAttribsGroup" />
+    	</xs:sequence>
+    </xs:complexType>
+    
+	<xs:group name="esbClientAttribsGroup">
+		<xs:sequence>
+    		<xs:element name="registeredAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+    			<xs:annotation>
+    				<xs:documentation>
+    					The distinguished name (DN) present on the client's 
+    					certificate. Note that the proper format of this 
+    					value has names and values separated by forward slashes
+    					(/).
+    				</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="destinationIndicator" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+    			<xs:annotation>
+    				<xs:documentation>
+    					The site ID for MCID applications.
+    				</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    		<xs:element name="group" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+    			<xs:annotation>
+    				<xs:documentation>
+    					The LDAP groups the ESB client is a member of. These 
+    					groups determine what ESB services are available to the
+    					client.
+    				</xs:documentation>
+    			</xs:annotation>
+    		</xs:element>
+    	</xs:sequence>
+	</xs:group>    
+
+    <xs:complexType name="softTokenDetails">
+        <xs:sequence>
+            <xs:element name="seedXml" nillable="false" type="xs:string"/>
+            <xs:element name="issueDate" nillable="false" type="xs:string"/>
+            <xs:element name="expireDate" nillable="false" type="xs:string"/>
+            <xs:element name="seqNum" nillable="false" type="xs:string"/>
+            <xs:element name="deviceId" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="userCredentials">
+        <xs:sequence>
+            <xs:element name="userId" nillable="false" type="xs:string"/>
+            <xs:element name="password" nillable="false" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="passwordPolicy">
+        <xs:sequence>
+            <xs:element name="passwordMaxAgeDays" nillable="true" type="xs:float"/>            
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
